@@ -2,12 +2,12 @@
   <% @users.each do |user| %>
     <li>
       <% if user.avatar? %>
-        <%= image_tag user.avatar.thumb, alt: "user_avatar" %>
+        <%= image_tag user.avatar.thumb.url, alt: "user_avatar" %>
       <% end %>
 
-      <%= link_to "#{user.firstname} #{user.lastname}", [:users, user] %>
-      <%= link_to "Edit", [:edit, :users, user] %>
-      <%= link_to "Supprimer", admin: user, method: :delete %>
+      <%= link_to "#{user}", user %>
+      <%= link_to "Edit", [:edit,  user] %>
+      <%= link_to "Supprimer", user, method: :delete %>
     </li>
   <% end %>
 </ul>
