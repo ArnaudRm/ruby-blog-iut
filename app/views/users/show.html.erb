@@ -1,0 +1,26 @@
+<div class="col-md-12">
+
+  <h1 class="page-header">
+    <%= "Profil de #{@user}" %>
+  </h1>
+
+  <div class="container-fluid well span6">
+    <div class="row-fluid">
+      <% if @user.avatar %>
+        <div class="col-md-2 ">
+          <%= image_tag @user.avatar.url(:thumb), alt: "user_avatar", class: "img-circle" %>
+        </div>
+      <% end %>
+
+      <div class="col-md-8">
+        <h3>
+          <%= "#{@user}" %>
+        </h3>
+        <h6>
+          <%= "Email : #{@user.email}" %>
+        </h6>
+      </div>
+    </div>
+  </div>
+
+</div>
