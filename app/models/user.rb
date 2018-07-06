@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :avatar, AvatarUploader
+  has_many :posts, dependent: :delete_all
 
   def to_s
     "#{firstname.capitalize} #{lastname.capitalize}"

@@ -1,0 +1,14 @@
+<div class="col-md-12">
+
+  <h1 class="page-header">
+    Les derniers articles
+  </h1>
+
+  <% if @posts.length > 0 %>
+    <%= render "renderPosts" %>
+    <%= will_paginate @posts %>
+  <% else %>
+    <p>Pas d'article ...</p>
+  <% end %>
+
+</div>

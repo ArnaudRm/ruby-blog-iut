@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :own_user, only: [:edit, :update]
 
   def index
     @users = User.order(:lastname).all
   end
+
 
   def new
     @user = User.new
@@ -18,6 +20,10 @@ class UsersController < ApplicationController
     else
       render "new"
     end
+  end
+
+  def show
+    @posts = Post.where(:user => @user)
   end
 
   def update
@@ -37,6 +43,13 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def own_user
+    @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to @user, notice: "Vous ne pouvez pas editer cet utilisateur !"
+    end
   end
 
   def user_params

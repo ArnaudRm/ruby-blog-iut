@@ -9,42 +9,46 @@
 </head>
 
 <body>
-
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <%= link_to "Accueil", root_path, class: "navbar-brand" %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+  <div class="collapse navbar-collapse navbar-right" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ml-auto mt-lg-0">
+      <% if user_signed_in? %>
+        <div class="navbar-text">
+          <% if user_signed_in? %>
+            <%= "Bonjour, " %>
+            <%= link_to "#{current_user}", current_user %>
+          <% end %>
+        </div>
+        <li class="nav-item">
+          <%= link_to 'Nouveau Post', new_post_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Editer mon Profil', [:edit, current_user], class: 'nav-link' %>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= user_signed_in? ? link_to("Deconnexion", destroy_user_session_path, class: 'nav-link', method: :delete) : link_to("Connexion", new_user_session_path, class: 'nav-link') %>
+      </li>
     </ul>
 
-    <div class="form-inline my-2 my-lg-0">
-      <div class="my-2 mx-4">
-        <%= link_to 'Editer mon Profil', edit_user_path if user_signed_in? %>
-      </div>
-        <% if user_signed_in? %>
-          <%= "Enregistré en tant que " %>
-          <%= link_to "#{current_user}", current_user, class: "nav-link" %>
-        <% end %>
-      <%= user_signed_in? ? link_to("Deconnexion", destroy_user_session_path, method: :delete) : link_to("Connexion", new_user_session_path) %>
-    </div>
   </div>
 </nav>
 
-<div class="container mt-5 pt-2">
-
+<div class="container mt-5 pt-4">
   <% if notice.present? %>
-    <p class="alert alert-info"><%= notice %></p>
+    <p class="alert alert-info mt-2"><%= notice %></p>
   <% end %>
 
   <% if alert.present? %>
-    <p class="alert alert-danger"><%= alert %></p>
+    <p class="alert alert-danger mt-2"><%= alert %></p>
   <% end %>
 
-  <div class="row">
+  <div class="d-flex justify-content-center">
     <%= yield %>
   </div>
 

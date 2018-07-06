@@ -1,20 +1,20 @@
 <div class="col-md-12">
 
   <h1 class="page-header">
-    <%= "Profil de #{@user}" %>
+    <%= @user != current_user ? "Profil de #{@user}" : "Mon profil" %>
   </h1>
 
   <div class="container-fluid well span6">
     <div class="row-fluid">
       <% if @user.avatar %>
         <div class="col-md-2 ">
-          <%= image_tag current_user.avatar.url(:thumb), alt: "user_avatar", class: "img-circle" %>
+          <%= image_tag @user.avatar.url(:thumb), alt: "user_avatar", class: "img-circle" %>
         </div>
       <% end %>
 
       <div class="col-md-8">
         <h3>
-          <%= "#{@user}" %>
+          <%= "#{@user.firstname} #{@user.lastname}" %>
         </h3>
         <h6>
           <%= "Email : #{@user.email}" %>
@@ -23,4 +23,13 @@
     </div>
   </div>
 
+  <h3 class="page-header">
+    <%= @user != current_user ? "Ses posts" : "Mes posts" %>
+  </h3>
+  <% if @user.posts.length == 0 %>
+    <p>Aucun article.</p>
+  <% else %>
+
+    <%= render "posts/renderPosts" %>
+  <% end %>
 </div>
