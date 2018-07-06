@@ -8,7 +8,7 @@
     <div class="row-fluid">
       <% if @user.avatar %>
         <div class="col-md-2 ">
-          <%= image_tag @user.avatar.url(:thumb), alt: "user_avatar", class: "img-circle" %>
+          <%= image_tag current_user.avatar.url(:thumb), alt: "user_avatar", class: "img-circle" %>
         </div>
       <% end %>
 

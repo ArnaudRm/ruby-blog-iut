@@ -23,7 +23,7 @@
 
     <div class="form-inline my-2 my-lg-0">
       <div class="my-2 mx-4">
-        <%= link_to 'Editer mon Profil', current_user if user_signed_in? %>
+        <%= link_to 'Editer mon Profil', edit_user_path if user_signed_in? %>
       </div>
         <% if user_signed_in? %>
           <%= "Enregistré en tant que " %>

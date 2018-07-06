@@ -6,12 +6,6 @@
       <% end %>
 
       <%= link_to "#{user}", user %>
-      <%= link_to "Edit", [:edit,  user] %>
-      <%= link_to "Supprimer", user, method: :delete %>
     </li>
   <% end %>
 </ul>
-
-<%= link_to "Inscription", new_user_registration_path %>
-
-<%# link_to "Inscription", new_user_registration_path #%>
