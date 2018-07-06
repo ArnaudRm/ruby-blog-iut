@@ -9,41 +9,32 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <%= link_to "Accueil", root_path, class: "navbar-brand" %>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
-      <div class="navbar-text">
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <%= link_to "Accueil", root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    </ul>
+
+    <div class="form-inline my-2 my-lg-0">
+      <div class="my-2 mx-4">
+        <%= link_to 'Editer mon Profil', current_user if user_signed_in? %>
+      </div>
         <% if user_signed_in? %>
           <%= "Enregistré en tant que " %>
-          <%= link_to "#{current_user.firstname} #{current_user.lastname}", current_user %>
+          <%= link_to "#{current_user}", current_user, class: "nav-link" %>
         <% end %>
-      </div>
-      <ul class="nav navbar-nav">
-        <li>
-          <%= link_to 'Editer mon Profil', current_user if user_signed_in? %>
-        </li>
-        <li>
-          <%= user_signed_in? ? link_to("Deconnexion", destroy_user_session_path, method: :delete) : link_to("Connexion", new_user_session_path) %>
-        </li>
-      </ul>
+      <%= user_signed_in? ? link_to("Deconnexion", destroy_user_session_path, method: :delete) : link_to("Connexion", new_user_session_path) %>
     </div>
-    <!-- /.navbar-collapse -->
   </div>
-  <!-- /.container -->
 </nav>
 
-<div class="container">
+<div class="container mt-5 pt-2">
 
   <% if notice.present? %>
     <p class="alert alert-info"><%= notice %></p>
