@@ -1,17 +1,8 @@
-<%= form_with(model: comment, local: true) do |form| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
+<%= form_for [@post, Comment.new], remote: true do |f| %>
+  <%= f.text_area :content, class: 'form-control', placeholder: 'Commentaire' %>
+  <br>
+  <div class="actions pull-right">
+    <% link_to %>
+    <button type="submit" class="btn btn-info send-button">Créer le commentaire</button>
   </div>
 <% end %>
