@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :own_post, only: [:edit, :delete]
 
   def index
-    @posts = Post.paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
+    @posts = Post.paginate(:page => params[:page], :per_page => 6).order(created_at: :desc)
   end
 
 

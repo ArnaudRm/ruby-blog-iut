@@ -1,39 +1,22 @@
+<div class="row justify-content-around">
   <% @posts.each do |post| %>
-    <div class="row">
-      <%= image_tag post.picture.url(:thumb_post), alt: "post picture full-width", class: "col-md-2" %>
-
-      <div class="col-md-10">
-        <div class="row">
-          <h2 class="col-xs-10 col-md-10">
-            <%= link_to post.title, post %>
-          </h2>
-          <% if post.user == current_user %>
-            <p class="col-xs-2 col-md-2 text-right" id="update_icon">
-              <%= link_to edit_post_path(post) do %>
-                <span class="glyphicon glyphicon-edit"></span>
-              <% end %>
-
-              <%= link_to post, method: :delete, data: {confirm: 'Voulez vous vraiment supprimer ce post ?'} do %>
-                <span class="glyphicon glyphicon-trash"></span>
-              <% end %>
-            </p>
-          <% end %>
-        </div>
-        <% if post.user != current_user %>
-          <p class="lead">
-            Écrit par
-            <%= link_to post.user, post.user %>
+      <div class="card col-sm-12 col-md-4 col-lg-3 mb-4 ml-1">
+        <%= image_tag post.picture.url(:thumb_post), alt: "post picture full-width" %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <%= link_to "#{post.title}", post%>
+          </h5>
+          <p class="card-text">
+            <%= truncate(post.content, length: 250) {link_to " Lire la suite", post} %>
           </p>
-        <% end %>
-        <p>
-          <span class="glyphicon glyphicon-time"></span>
-          <%= "Posté le #{post.created_at.strftime('%d/%m/%y')}" %>
-        </p>
-        <hr>
-        <p>
-          <%= truncate(post.content, length: 250) {link_to " Lire la suite", post} %>
-        </p>
+          <div class="card-footer bg-transparent border-success">
+            <p class="card-text">
+              <small class="text-muted">
+                <%= "Publié le #{post.created_at.strftime('%d/%m/%y')}" %>
+              </small>
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-    <hr>
   <% end %>
+</div>
