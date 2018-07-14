@@ -19,7 +19,7 @@
       <br>
       <%= @user.errors[:avatar] if @user.errors[:avatar].present? %>
       <% if @user.avatar? %>
-        <%= image_tag @user.avatar.url(:thumb) %>
+        <%= image_tag @user.avatar.url(:thumb), class: 'rounded-circle' %>
       <% else %>
         <%= f.label :avatar %>
       <% end %>

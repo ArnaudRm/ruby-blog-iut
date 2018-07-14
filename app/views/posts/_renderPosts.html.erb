@@ -1,18 +1,31 @@
 <div class="row justify-content-around">
   <% @posts.each do |post| %>
     <div class="card col-sm-12 col-md-6 col-lg-4 mb-4 ">
+      <% if post.user == current_user %>
+        <span class="badge badge-primary post-badge">Votre article</span>
+      <% end %>
       <%= image_tag post.picture.url(:thumb_post), alt: "post picture full-width" %>
       <div class="card-body">
-        <h5 class="card-title">
+        <h5 class="card-title mb-0">
           <%= post.title %>
         </h5>
+
+        <% if post.user != current_user %>
+          <div>
+            <p>
+              Écrit par
+              <%= link_to post.user, post.user %>
+            </p>
+          </div>
+        <% end %>
+
         <p class="card-text">
           <%= post.chapeau %>
         </p>
         <p class="card-text post-content">
           <%= truncate(post.content, length: 250) {link_to " Lire la suite", post} %>
         </p>
-        <%= link_to "Lire la suite", post, class: "btn btn-primary mb-3" %>
+        <%= link_to "Lire la suite", post, class: "btn btn-primary mt-3 mb-3" %>
         <div class="card-footer bg-transparent border-primary">
           <p class="card-text">
             <small class="text-muted">
