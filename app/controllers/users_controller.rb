@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes user_params
-      redirect_to user_path
+      redirect_to user_path, notice: 'Profil modifié avec succès'
     else
       render "edit"
     end
