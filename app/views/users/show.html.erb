@@ -26,10 +26,13 @@
   <h3 class="page-header">
     <%= @user != current_user ? "Ses posts" : "Mes posts" %>
   </h3>
-  <% if @user.posts.length == 0 %>
-    <p>Aucun article.</p>
-  <% else %>
 
+  <% if @posts.length > 0 %>
     <%= render "posts/renderPosts" %>
+    <div class="digg_pagination">
+      <%= will_paginate @posts, :container => false %>
+    </div>
+  <% else %>
+    <p>Aucun article.</p>
   <% end %>
 </div>

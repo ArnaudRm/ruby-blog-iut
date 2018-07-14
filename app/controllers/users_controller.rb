@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = Post.where(:user => @user)
+    @posts = Post.paginate(:page => params[:page], :per_page => 5).order(created_at: :desc)
   end
 
   def update
