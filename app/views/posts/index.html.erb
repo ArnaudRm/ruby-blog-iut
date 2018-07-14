@@ -6,7 +6,9 @@
 
   <% if @posts.length > 0 %>
     <%= render "renderPosts" %>
-    <%= will_paginate @posts %>
+    <div class="digg_pagination">
+      <%= will_paginate @posts, :container => false %>
+    </div>
   <% else %>
     <p>Pas d'article ...</p>
   <% end %>
