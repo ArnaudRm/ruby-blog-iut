@@ -17,6 +17,7 @@
 !/log/.keep
 !/tmp/.keep
 /public/uploads/*
+/config/database.yml
 
 # Ignore uploaded files in development
 /storage/*
@@ -34,3 +35,5 @@
 # Environment/IDE specific stuff
 .DS_Store
 .idea
+
+
